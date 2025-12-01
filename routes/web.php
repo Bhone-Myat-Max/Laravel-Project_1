@@ -63,12 +63,36 @@ Route::prefix('/backend')->group(function(){
 
 
 Route::get('/articles', [ArticleController::class, 'index']);
-
-// Route::get('/Category', [CategoryController::class, 'index'])->name('categories.back');
-
-// Route::get('/Category/{id}', [CategoryController::class, 'show'])->name('categories.show');
+// Category
+Route::get('/Category', [CategoryController::class, 'index'])->name('categories.index');
 
 
+
+Route::get('/Category/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+
+Route::post('/Category/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+
+Route::get('/Category/create', [CategoryController::class, 'create'])->name('categories.create');
+
+Route::post('/Category/store', [CategoryController::class, 'store'])->name('categories.store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//product
 Route::get('/Product', [ProductController::class, 'index'])->name('product.back');
 
 Route::get('/Product/{id}', [ProductController::class, 'show_Product'])->name('products.show');
+
+// Route::('')
+

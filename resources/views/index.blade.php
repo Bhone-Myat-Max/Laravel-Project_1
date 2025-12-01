@@ -11,28 +11,20 @@
 <body>
     <div>
 
-        <H1>Hello Product</H1>
-
-        @foreach ($data as $products)
+        <H1>Hello Category</H1>
+        <a href="{{route('categories.create')}}">Create</a>
+        {{-- @foreach ($data as $products)
             <p>{{$products['id']}}:{{$products['name']}}:{{$products['price']}}</p>
             <a href="{{route('products.show', ['id'=>$products->id])}}">Show</a>
-        @endforeach
+        @endforeach --}}
 
-        {{-- @foreach ($data as $category)
+        @foreach ($data as $category)
         <p>{{$category['id']}}:{{$category['name']}}</p>
 
-        <a href="{{route('categories.show', ['id'=>$category->id])}}" >show</a>
+        <a href="{{route('categories.edit', ['id'=>$category->id])}}">Edit</a>
 
+        @endforeach
 
-
-        @endforeach --}}
-        {{-- @foreach ($category as $data)
-        <p>{{$data['id']}}:{{$data['name']}}</p>
-
-        @endforeach --}}
-            {{-- @foreach ($articles as $data )
-                <p>{{$data['id']}}:{{$data['name']}}</p>
-            @endforeach --}}
     </div>
 </body>
 
