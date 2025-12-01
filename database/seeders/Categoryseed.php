@@ -17,7 +17,7 @@ class Categoryseed extends Seeder
             [
                 'id'=> 1,
                 'name' => "Travel",
-                
+
             ],
             [
                 'id'=> 2,
