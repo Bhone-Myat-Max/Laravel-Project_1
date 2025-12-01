@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,6 +64,11 @@ Route::prefix('/backend')->group(function(){
 
 Route::get('/articles', [ArticleController::class, 'index']);
 
-Route::get('/Category', [CategoryController::class, 'index'])->name('categories.back');
+// Route::get('/Category', [CategoryController::class, 'index'])->name('categories.back');
 
-Route::get('/Category/{id}', [CategoryController::class, 'show'])->name('categories.show');
+// Route::get('/Category/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+
+Route::get('/Product', [ProductController::class, 'index'])->name('product.back');
+
+Route::get('/Product/{id}', [ProductController::class, 'show_Product'])->name('products.show');
