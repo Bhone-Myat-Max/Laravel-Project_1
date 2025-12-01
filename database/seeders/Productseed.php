@@ -17,21 +17,25 @@ class Productseed extends Seeder
                 'id'=> 1,
                 'name' => "Apple",
                 'price' => 10,
+                'Description' => "Organic food, can eat, can make juice"
             ],
             [
                 'id'=> 2,
                 'name' => "Watermelon",
                 'price' => 40,
+                'Description' => "Organic food, can eat, can make juice"
             ],
             [
                 'id'=> 3,
                 'name' => "Orange",
                 'price' => 25,
+                'Description' => "Organic food, can eat, can make juice"
             ],
             [
                 'id'=> 4,
                 'name' => "Potato",
                 'price' => 30,
+                'Description' => "Organic food, can fry, can eat"
             ]
         ];
 
