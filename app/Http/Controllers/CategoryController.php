@@ -37,26 +37,17 @@ class CategoryController extends Controller
 
     public function index(){
         $data = Category::get();
-        return view('index' ,compact('data'));
+        return view('Categories.index' ,compact('data'));
     }
 
 
-    public function create(){
-        // dd(here);
-        return view('create');
-    }
 
 
-    public function store(Request $request){
-
-        Category::create(['name'=> $request->name]);
-        return redirect()->redirect('categories.index');
-        // dd($request);
-    }
+    // dd
 
     public function edit($id){
         $category = Category::find($id);
-        return view('edit', compact('category'));
+        return view('Categories.edit', compact('category'));
     }
 
 
@@ -67,6 +58,19 @@ class CategoryController extends Controller
             'name'=>$request->name,
          ]);
          return redirect()->route('categories.index');
+    }
+
+    public function create(){
+        // dd(here);
+        return view('Categories.create');
+    }
+
+
+    public function store(Request $request){
+
+        Category::create(['name'=> $request->name]);
+        return redirect()->route('categories.index');
+        // dd($request);
     }
 
 

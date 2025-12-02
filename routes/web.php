@@ -63,10 +63,9 @@ Route::prefix('/backend')->group(function(){
 
 
 Route::get('/articles', [ArticleController::class, 'index']);
+
 // Category
 Route::get('/Category', [CategoryController::class, 'index'])->name('categories.index');
-
-
 
 Route::get('/Category/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 
@@ -90,9 +89,12 @@ Route::post('/Category/store', [CategoryController::class, 'store'])->name('cate
 
 
 //product
-Route::get('/Product', [ProductController::class, 'index'])->name('product.back');
+Route::get('/Product', [ProductController::class, 'index'])->name('product.index');
 
-Route::get('/Product/{id}', [ProductController::class, 'show_Product'])->name('products.show');
+Route::get('/Product/{id}/edit',[ProductController::class, 'edit'])->name('products.edit');
 
-// Route::('')
+Route::post('/Products/{id}/update',[ProductController::class, 'update'])->name('products.update');
 
+Route::get('/Product/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::post('Product/add', [ProductController::class, 'add'])->name('products.add');
