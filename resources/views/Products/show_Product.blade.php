@@ -16,8 +16,8 @@
     <h1>Product Show</h1>
     <p><strong>Product_ID:</strong> {{$product['id']}}</p>
     <p><strong>Name: </strong> {{$product['name']}}</p>
-    <p><strong>Price: </strong> {{$product['price']}}</p>
+    <p><strong>Price: </strong> {{$product['price']}} Ks</p>
     <p><strong>Description: </strong> {{$product['description']}}</p>
-    <a href="{{route('product.back')}}">Back</a>
+    <a href="{{route('product.index')}}">Back</a>
 </body>
 </html>

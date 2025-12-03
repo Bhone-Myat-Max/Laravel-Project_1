@@ -75,7 +75,7 @@ Route::get('/Category/create', [CategoryController::class, 'create'])->name('cat
 
 Route::post('/Category/store', [CategoryController::class, 'store'])->name('categories.store');
 
-
+Route::post('/Category/{id}/delete', [CategoryController::class, 'delete'])->name('categories.delete');
 
 
 
@@ -93,8 +93,12 @@ Route::get('/Product', [ProductController::class, 'index'])->name('product.index
 
 Route::get('/Product/{id}/edit',[ProductController::class, 'edit'])->name('products.edit');
 
+Route::get('/Product/{id}/show',[ProductController::class, 'show'])->name('products.show');
+
 Route::post('/Products/{id}/update',[ProductController::class, 'update'])->name('products.update');
 
 Route::get('/Product/create', [ProductController::class, 'create'])->name('products.create');
 
 Route::post('Product/add', [ProductController::class, 'add'])->name('products.add');
+
+Route::post('Product/{id}/delete' ,[ProductController::class, 'delete'])->name('products.delete');

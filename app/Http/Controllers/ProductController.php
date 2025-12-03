@@ -12,7 +12,7 @@ class ProductController extends Controller
         $data = Product::get();
         return view('Products.index' ,compact('data'));
     }
-    public function show_Product($id){
+    public function show($id){
 
         $product = Product::find($id);
         return view('Products.show_Product', compact('product'));
@@ -52,6 +52,14 @@ class ProductController extends Controller
 
             return redirect()->route('product.index');
 
+    }
+
+    public function delete($id){
+        // dd($id);
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->route('categories.index');
     }
 
 
