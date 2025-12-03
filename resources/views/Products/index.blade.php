@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    {{-- font-awsome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     {{-- Bootstrap --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -18,11 +22,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="bg-secondary text-white">ID</th>
-                    <th class="bg-secondary text-white">NAME</th>
-                    <th class="bg-secondary text-white">PRICE</th>
-                    <th class="bg-secondary text-white">DESCRIPTION</th>
-                    <th class="bg-secondary text-white">ACTION</th>
+                    <th class="bg-dark text-white ">ID</th>
+                    <th class="bg-dark text-white">NAME</th>
+                    <th class="bg-dark text-white">PRICE</th>
+                    <th class="bg-dark text-white">DESCRIPTION</th>
+                    <th class="bg-dark text-white">ACTION</th>
                 </tr>
 
             </thead>
@@ -35,10 +39,10 @@
                         <td>{{ $products['description'] }}</td>
                         <td class="d-flex">
                             <a href="{{ route('products.edit', ['id' => $products->id]) }}"
-                                class="btn btn-outline-success btn-sm ">Edit</a>
+                                class="btn btn-outline-success btn-sm "><i class="fa-solid fa-pen-to-square"></i></a>
                             <form action="{{ route('products.delete', ['id' => $products['id']]) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-danger btn-sm ms-3">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm ms-3"><i class="fa-solid fa-trash-can"></i></button>
 
                             </form>
                         </td>
