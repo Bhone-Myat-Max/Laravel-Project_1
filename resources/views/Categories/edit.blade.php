@@ -32,7 +32,12 @@
                 <form action="{{route('categories.update', [$category['id']])}}" method="POST">
                     @csrf
                     <label for="name">Category name:</label>
-                    <input type="text" name="name" value="{{$category['name']}}">
+                    <input type="text" name="name" value="{{$category['name']}}" >
+                    @error('name')
+                        <div class="invalid-feedback d-block">
+                            {{$message}}
+                        </div>
+                    @enderror
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Update</button>
                         <a href="{{route('categories.index')}}" class="btn btn-outline-secondary btn-sm">back</a>

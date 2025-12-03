@@ -17,16 +17,28 @@
         <button type="submit">Add</button>
         <a href="{{route('categories.index')}}">back</a>
     </form> --}}
+    {{-- {{$errors}} --}}
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
                 + Create Category
             </div>
             <div class="card-body">
-                <form action="{{route('categories.store')}}" method="POST">
+                <form action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="name" class="mb-2">Category name:</label><br>
-                    <input type="text" name="name">
+
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Category name" name="name" value="{{old('name')}}">
+                     @error('name')
+                        <div class="invalid-feedback d-block">
+                            {{$message}}
+                        </div>
+                    @enderror
+
+                    <div class="card-body">
+                        <label for="image">Image</label><br>
+                        <input type="file" name="image" id=""/>
+                    </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Add</button>
                         <a href="{{route('categories.index')}}" class="btn btn-outline-secondary btn-sm">back</a>

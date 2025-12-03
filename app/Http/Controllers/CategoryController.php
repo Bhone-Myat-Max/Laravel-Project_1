@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 
+use App\Http\Requests\CategoryUpdateRrequest;
+
+
 class CategoryController extends Controller
 {
     // public function value() {
@@ -51,7 +54,7 @@ class CategoryController extends Controller
     }
 
 
-    public function update(Request $request){
+    public function update(CategoryUpdateRrequest $request){
         // dd($request->all);
          $category = Category::find($request->id);
          $category ->update([
@@ -67,8 +70,17 @@ class CategoryController extends Controller
 
 
     public function store(Request $request){
+        $validedData= $request->validate([
+            'name'=> 'required|string',
+            'image'=> 'required',
+        ]);
+        if($request->hasFile('image')){
+            $imageName = time(). '.' . $request->image->extension();
+            $request->image->move(public_path('categoryImages'), $imageName);
+            $validedData = array_merge($validedData, ['image' => $imageName]);
+        }
 
-        Category::create(['name'=> $request->name]);
+        Category::create($validedData);
         return redirect()->route('categories.index');
         // dd($request);
     }
