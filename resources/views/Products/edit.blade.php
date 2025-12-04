@@ -23,14 +23,31 @@
                 <form action="{{ route('products.update', [$product->id]) }}" method="POST">
                     @csrf
                     <label for="" class="mb-2">Products</label><br>
-                    <input type="text" placeholder="Enter Products..." name="name"
-                        value="{{ $product->name }}"><br>
+                    <input type="text" placeholder="Enter Products..." name="name"value="{{ $product->name }}"
+                        class="form-control"><br>
+                    @error('name')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <label for="" class="mb-2">Price</label><br>
                     <input type="text" placeholder="Enter Price..." name="price" value="{{ $product->price }}">
                     Ks<br>
+
+                    @error('price')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     {{-- <textarea name="description"  placeholder="Enter Products..." value="{{$product->description}}"></textarea><br> --}}
                     <label for="" class="mb-2">Description</label><br>
                     <input type="" name="description" value="{{ $product->description }}"><br><br>
+                    @error('description')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Update</button>

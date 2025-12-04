@@ -82,7 +82,7 @@ class CategoryController extends Controller
 
         Category::create($validedData);
         return redirect()->route('categories.index');
-        // dd($request);
+        dd($request->all);
     }
 
     public function delete($id){
