@@ -31,6 +31,7 @@ class ProductController extends Controller
             'name'=>$request->name,
             'price'=>$request->price,
             'description'=>$request->description,
+            // dd
 
         ]);
         //  dd($request->all);
