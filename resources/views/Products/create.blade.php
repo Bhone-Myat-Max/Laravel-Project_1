@@ -20,15 +20,44 @@
                 + Create Products
             </div>
             <div class="card-body">
-                <form action="{{ route('products.add') }}" method="POST">
+                <form action="{{ route('products.add') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="name">Product</label><br>
-                    <input type="text" placeholder="Enter Products..." name="name"><br>
-                    <label for="name">Price</label><br>
-                    <input type="text" placeholder="Enter Price..." name="price"><br>
+                    <input type="text" placeholder="Enter Products..." name="name"
+                        class="form-control @error('name') is-invalid @enderror"><br>
+                    @error('name')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <label for="price">Price</label><br>
+                    <input type="text" placeholder="Enter Price..." name="price"
+                        class="form-control @error('price') is-invalid @enderror"><br>
+                    @error('price')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     {{-- <textarea name="description"  placeholder="Enter Products..." value="{{$product->description}}"></textarea><br> --}}
-                    <label for="name">Description</label><br>
-                    <input type="" name="description" placeholder="Enter Description..."><br><br>
+                    <label for="description">Description</label><br>
+                    <input type="" name="description" placeholder="Enter Description..."
+                        class="form-control @error('description') is-invalid @enderror"><br><br>
+                    @error('description')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <div class="card-body">
+                        <label for="image">Image</label><br>
+                        <input type="file" name="image" id="" class="form-control @error('description') is-invalid @enderror" />
+                        @error('image')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Add</button>
                         <a href="{{ route('product.index') }}" class="btn btn-outline-secondary btn-sm">Back</a>

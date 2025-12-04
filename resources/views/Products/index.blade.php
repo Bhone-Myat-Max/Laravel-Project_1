@@ -26,6 +26,7 @@
                     <th class="bg-dark text-white">NAME</th>
                     <th class="bg-dark text-white">PRICE</th>
                     <th class="bg-dark text-white">DESCRIPTION</th>
+                    <th class="bg-dark text-white">IMAGE</th>
                     <th class="bg-dark text-white">ACTION</th>
                 </tr>
 
@@ -37,9 +38,12 @@
                         <td>{{ $products['name'] }}</td>
                         <td>{{ $products['price'] }}</td>
                         <td>{{ $products['description'] }}</td>
+                        <td>
+                            <img src="{{asset('ProductImages/'. $products['image'])}}" alt="{{$products['image']}}" style="width: 100px; height: auto;">
+                        </td>
                         <td class="d-flex">
                             <a href="{{ route('products.edit', ['id' => $products->id]) }}"
-                                class="btn btn-outline-success btn-sm "><i class="fa-solid fa-pen-to-square"></i></a>
+                                class="btn btn-outline-success btn-sm "><i class="fa-solid fa-pen-to-square"></i>Edit</a>
                             <form action="{{ route('products.delete', ['id' => $products['id']]) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger btn-sm ms-3"><i class="fa-solid fa-trash-can"></i></button>
