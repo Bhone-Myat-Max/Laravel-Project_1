@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Requests\ProductStoreRequest;
 
@@ -11,7 +12,8 @@ use App\Http\Requests\ProductStoreRequest;
 class ProductController extends Controller
 {
      public function index(){
-        $data = Product::get();
+        $data = Product::with('category')->get();
+        // dd($data);
         return view('Products.index' ,compact('data'));
     }
     public function show($id){
@@ -44,13 +46,16 @@ class ProductController extends Controller
             // dd
 
         ]);
+
+
         //  dd($request->all);
         return redirect()->route('product.index');
 
     }
 
     public function create(){
-        return view('Products.create');
+         $category = Category::get();
+        return view('products.create' , compact('category'));
     }
 
 
@@ -66,10 +71,19 @@ class ProductController extends Controller
         if($request->hasFile('image')){
             $imageName = time(). '.' . $request->image->extension();
             $request->image->move(public_path('ProductImages'), $imageName);
-            $validedData = array_merge($validedData, ['image' => $imageName]);
+            // $validedData = array_merge($validedData, ['image' => $imageName]);
         }
 
-        Product::create($request);
+
+        Product::create([
+            'category_id'=>$request->category_id,
+            'name'=> $request->name,
+            'price'=> $request->price,
+            'description'=> $request->description,
+            'image'=> $imageName,
+            'status'=> $request->has('status') ? true : false,
+
+        ]);
         return redirect()->route('product.index');
 
     }

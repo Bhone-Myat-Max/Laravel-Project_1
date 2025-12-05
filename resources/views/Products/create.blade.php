@@ -13,7 +13,7 @@
 
 <body>
 
-
+    {{-- {{dd($category)}} --}}
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -56,6 +56,20 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+
+                     <div class="card-body">
+                        <label for="">Category</label>
+                        <select name="category_id" id="">
+                            @foreach ($category as $categories)
+                                <option  value="{{$categories->id}}">{{$categories->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="">Active or expired</label>
+                        <input type="checkbox" name="status" id="" role="switch" checked >
                     </div>
 
                     <div class="card-footer">

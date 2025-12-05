@@ -16,6 +16,8 @@
 </head>
 
 <body>
+
+    {{-- {{dd($data)}} --}}
     <div class="container">
         <h2 class="mt-4">Hello Products</h2><br>
         <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm mb-4">+ Create</a>
@@ -25,8 +27,10 @@
                     <th class="bg-dark text-white ">ID</th>
                     <th class="bg-dark text-white">NAME</th>
                     <th class="bg-dark text-white">PRICE</th>
+                    <th class="bg-dark text-white">CATEGORY</th>
                     <th class="bg-dark text-white">DESCRIPTION</th>
                     <th class="bg-dark text-white">IMAGE</th>
+                    <th class="bg-dark text-white">STATUS</th>
                     <th class="bg-dark text-white">ACTION</th>
                 </tr>
 
@@ -37,9 +41,21 @@
                         <td>{{ $products['id'] }}</td>
                         <td>{{ $products['name'] }}</td>
                         <td>{{ $products['price'] }}</td>
+                        <td>
+                            {{ $products['category']? $products['category']['name'] : '-'  }}
+                        </td>
+
                         <td>{{ $products['description'] }}</td>
                         <td>
                             <img src="{{asset('ProductImages/'. $products['image'])}}" alt="{{$products['image']}}" style="width: 100px; height: auto;">
+                        </td>
+
+                        <td>
+                            @if ($products->status ==1)
+                                <span class="text-success">Active</span>
+                            @else
+                                <span class="text-danger">Expired</span>
+                            @endif
                         </td>
                         <td class="d-flex">
                             <a href="{{ route('products.edit', ['id' => $products->id]) }}"

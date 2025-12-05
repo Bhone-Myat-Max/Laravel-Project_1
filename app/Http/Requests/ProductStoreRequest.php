@@ -26,6 +26,8 @@ class ProductStoreRequest extends FormRequest
             'price'=> "required|integer",
             'description'=> "required|string",
             'image'=> 'required',
+            'status'=> 'nullable',
+             'category_id'=> 'required',
 
         ];
     }

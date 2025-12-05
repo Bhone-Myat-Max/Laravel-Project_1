@@ -11,6 +11,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    {{-- {{dd($category)}} --}}
     {{-- <form action="{{route('categories.store')}}" method="POST">
         @csrf
         <input type="text" name="name" placeholder="Enter Category name">
@@ -39,6 +40,9 @@
                         <label for="image">Image</label><br>
                         <input type="file" name="image" id=""/>
                     </div>
+
+                   
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Add</button>
                         <a href="{{route('categories.index')}}" class="btn btn-outline-secondary btn-sm">back</a>
