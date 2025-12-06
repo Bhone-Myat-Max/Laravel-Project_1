@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    {{-- {{dd($categories->all())}} --}}
 
     <div class="container">
         <div class="card">
@@ -31,8 +31,8 @@
                         </div>
                     @enderror
                     <label for="" class="mb-2">Price</label><br>
-                    <input type="text" placeholder="Enter Price..." name="price" value="{{ $product->price }}">
-                    Ks<br>
+                    <input type="text" class="form-control"  placeholder="Enter Price..." name="price" value="{{ $product->price }}">
+                    <br>
 
                     @error('price')
                         <div class="invalid-feedback d-block">
@@ -41,16 +41,35 @@
                     @enderror
                     {{-- <textarea name="description"  placeholder="Enter Products..." value="{{$product->description}}"></textarea><br> --}}
                     <label for="" class="mb-2">Description</label><br>
-                    <input type="" name="description" value="{{ $product->description }}"><br><br>
+                    <input type="" name="description" class="form-control" value="{{ $product->description }}"><br><br>
                     @error('description')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
                         </div>
                     @enderror
 
+                    <label for="" class="mb-2">Image</label><br>
+                    <img src="{{ asset('ProductImages/'.$product->image) }}" class="w-25 h-auto"><br><br>
+                    @error('image')
+                        <div class="invalid-feedback d-block">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+
+                    <label for="" class="mb-2">Category</label><br>
+
+                    <select name="category_id" id="">
+                        @foreach ($categories as $cat)
+                            <option value="{{$cat->id}}" {{$cat->id == $product->category_id ? 'selected': ''}}>{{$cat->name}}</option>
+                        @endforeach
+                    </select><br>
+
+                    <label for="status">Active Or Expired</label>br
+                    <input type="checkbox" name="status" role="switch" value="{{$product->status}}" {{ $product->status == 1 ? 'checked' :"" }} >
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-primary btn-sm me-2">Update</button>
+                        <button type="submit" class="btn btn-primary btn-sm me-2">Update</button>
                         <a href="{{ route('product.index') }}" class="btn btn-outline-secondary btn-sm">Back</a>
                     </div>
                 </form>

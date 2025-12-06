@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -102,3 +103,16 @@ Route::get('/Product/create', [ProductController::class, 'create'])->name('produ
 Route::post('Product/add', [ProductController::class, 'add'])->name('products.add');
 
 Route::post('Product/{id}/delete' ,[ProductController::class, 'delete'])->name('products.delete');
+
+
+
+
+
+
+
+
+//User
+Route::get('/User', [UserController::class, 'list'])->name('users.list');
+Route::post('/User/{id}/delete', [UserController::class, 'delete'])->name('users.delete');
+Route::get('/User/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/User/store', [UserController::class, 'store'])->name('users.store');

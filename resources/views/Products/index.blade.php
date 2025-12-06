@@ -21,7 +21,7 @@
     <div class="container">
         <h2 class="mt-4">Hello Products</h2><br>
         <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm mb-4">+ Create</a>
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th class="bg-dark text-white ">ID</th>
@@ -47,7 +47,7 @@
 
                         <td>{{ $products['description'] }}</td>
                         <td>
-                            <img src="{{asset('ProductImages/'. $products['image'])}}" alt="{{$products['image']}}" style="width: 100px; height: auto;">
+                            <img src="{{asset('ProductImages/'. $products['image'])}}" alt="{{$products['image']}}" style="width: 100%; height: 30px;">
                         </td>
 
                         <td>

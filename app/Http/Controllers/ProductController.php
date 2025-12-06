@@ -11,7 +11,10 @@ use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
 {
-     public function index(){
+
+
+
+    public function index(){
         $data = Product::with('category')->get();
         // dd($data);
         return view('Products.index' ,compact('data'));
@@ -26,24 +29,22 @@ class ProductController extends Controller
 
     public function edit($id){
         $product =Product::find($id);
-        return view('Products.edit', compact('product'));
+        $categories = Category::all();
+
+        return view('products.edit', compact('product','categories'));
     }
 
     public function update(ProductUpdateRequest $request){
-        // $ValidData = $request->validate([
-        //     'name'=> "required|string",
-        //     'price'=> "required|integer",
-        //     'description'=> "required|string",
 
-
-        // ]);
-        // dd($ValidData->all());
+        //  dd($request->all());
         $product = Product::find($request->id);
         $product->update([
             'name'=>$request->name,
             'price'=>$request->price,
             'description'=>$request->description,
-            // dd
+            'category_id'=>$request->category_id,
+            'status'=>$request->has('status') ? true : false,
+            // dd($product->all())
 
         ]);
 
@@ -87,20 +88,6 @@ class ProductController extends Controller
         return redirect()->route('product.index');
 
     }
-
-    // public function add(Request $request){
-
-    //    dd($request->all);
-    //     Product::create(
-    //         [
-    //             'name'=>$request->name,
-    //             'price'=>$request->price,
-    //             'description'=>$request->description,
-    //         ]);
-
-    //         return redirect()->route('product.index');
-
-    // }
 
     public function delete($id){
         // dd($id);
