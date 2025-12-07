@@ -6,36 +6,41 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
 {
-    public function list(){
-       $UserModel= User::get();
-       return view('Users.index', compact('UserModel'));
-
+    protected $UserRepository;
+     public function __construct(UserRepositoryInterface $UserRepository){
+        $this-> UserRepository = $UserRepository;
     }
 
+    # List funtion
+    public function list(){
+       $UserModel=  $this->UserRepository->list();
+       return view('Users.index', compact('UserModel'));
+    }
+
+    # delete funtion
     public function delete($id){
-        // dd($id);
-        $UserModel=User::find($id);
+
+        $UserModel=$this->UserRepository->delete($id);
         $UserModel->delete();
         return redirect()->route('users.list');
     }
 
+    # create funtion
     public function create(){
-        $UserModel=User::get();
+        $UserModel=$this->UserRepository->list();
         return view('Users.create', compact('UserModel'));
     }
 
+    # store funtion
     public function store(UserStoreRequest $request){
-
         if($request->hasFile('image')){
             $imageName = time(). '.' . $request->image->extension();
             $request->image->move(public_path('UserImages'), $imageName);
-            // $validedData = array_merge($validedData, ['image' => $imageName]);
-            //  dd($imageName);
         }
-
        User::create([
             'name'=> $request->name,
             'gender'=> $request->gender,
@@ -45,19 +50,17 @@ class UserController extends Controller
             'image'=> $imageName,
             'status'=> $request->has('status') ? true : false,
         ]);
-
         return redirect()->route('users.list');
     }
 
+    # edit funtion
     public function edit($id){
-
-        // dd($id);
-        $UserModel = User::find($id);
+        $UserModel = $this->UserRepository->delete($id);
         return view('Users.edit', compact('UserModel'));
     }
 
+    # update funtion
     public function update(UserUpdateRequest $request){
-        dd($request->all());
         $UserModel = User::find($request->id);
         $UserModel->update([
             'name'=> $request->name,
@@ -65,10 +68,8 @@ class UserController extends Controller
             'email'=> $request->email,
             'address'=> $request->address,
             'password'=> $request->password,
-            'image'=> $imageName,
             'status'=> $request->has('status') ? true : false,
         ]);
-
         return redirect()->route('users.list');
     }
 }

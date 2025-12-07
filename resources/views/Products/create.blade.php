@@ -20,6 +20,7 @@
                 + Create Products
             </div>
             <div class="card-body">
+                {{-- form --}}
                 <form action="{{ route('products.add') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="name">Product</label><br>
@@ -72,6 +73,7 @@
                         <input type="checkbox" name="status" id="" role="switch" checked >
                     </div>
 
+                    {{-- button --}}
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Add</button>
                         <a href="{{ route('product.index') }}" class="btn btn-outline-secondary btn-sm">Back</a>

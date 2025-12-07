@@ -21,6 +21,7 @@
     <div class="container">
         <h2 class="mt-4">Hello Products</h2><br>
         <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm mb-4">+ Create</a>
+        {{-- Table --}}
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -29,6 +29,7 @@
                 Edit Category
             </div>
             <div class="card-footer">
+                {{-- form --}}
                 <form action="{{route('categories.update', [$category['id']])}}" method="POST">
                     @csrf
                     <label for="name">Category name:</label>
@@ -38,6 +39,7 @@
                             {{$message}}
                         </div>
                     @enderror
+                    {{-- button --}}
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">Update</button>
                         <a href="{{route('categories.index')}}" class="btn btn-outline-secondary btn-sm">back</a>

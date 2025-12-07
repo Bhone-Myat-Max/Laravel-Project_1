@@ -2,79 +2,71 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Http\Requests\ProductUpdateRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Repositories\Product\ProductRepositoryInterface;
 
 
 class ProductController extends Controller
 {
 
 
+    protected $ProductRepository;
+        public function __construct(ProductRepositoryInterface $ProductRepository){
+        $this-> ProductRepository = $ProductRepository;
+    }
 
+    # List funtion
     public function index(){
-        $data = Product::with('category')->get();
-        // dd($data);
+        $data = $this-> ProductRepository->index();
         return view('Products.index' ,compact('data'));
     }
+
+    # show funtion
     public function show($id){
 
-        $product = Product::find($id);
+        $product = $this-> ProductRepository->show($id);
         return view('Products.show_Product', compact('product'));
     }
 
-
-
+    # edit funtion
     public function edit($id){
-        $product =Product::find($id);
+        $product = $this-> ProductRepository->show($id);
         $categories = Category::all();
 
         return view('products.edit', compact('product','categories'));
     }
 
+    # update funtion
     public function update(ProductUpdateRequest $request){
 
-        //  dd($request->all());
-        $product = Product::find($request->id);
+        $product = $this-> ProductRepository->show($request->id);
         $product->update([
             'name'=>$request->name,
             'price'=>$request->price,
             'description'=>$request->description,
             'category_id'=>$request->category_id,
             'status'=>$request->has('status') ? true : false,
-            // dd($product->all())
-
         ]);
-
-
-        //  dd($request->all);
         return redirect()->route('product.index');
-
     }
 
+    # create funtion
     public function create(){
          $category = Category::get();
         return view('products.create' , compact('category'));
     }
 
+    # add funtion
+    public function add(ProductStoreRequest $request){
 
-      public function add(ProductStoreRequest $request){
-
-        // dd($request->all());
-        // $validedData= $request->validate([
-        //     'name'=> 'required|string',
-        //     'price'=> "required|integer",
-        //     'description'=> "required|string",
-        //     'image'=> 'required',
-        // ]);
         if($request->hasFile('image')){
             $imageName = time(). '.' . $request->image->extension();
             $request->image->move(public_path('ProductImages'), $imageName);
-            // $validedData = array_merge($validedData, ['image' => $imageName]);
         }
-
 
         Product::create([
             'category_id'=>$request->category_id,
@@ -89,9 +81,9 @@ class ProductController extends Controller
 
     }
 
+    # delete funtion
     public function delete($id){
-        // dd($id);
-        $product = Product::find($id);
+        $product = $this-> ProductRepository->show($id);
         $product->delete();
 
         return redirect()->route('product.index');
