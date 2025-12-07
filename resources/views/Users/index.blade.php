@@ -15,54 +15,74 @@
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* td,
+        th {
+           width: 200px
+        } */
+
+        td img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
 
     {{-- {{dd($UserModel)}} --}}
 
-    <div class="container">
-        <h2 class="my-5 text-center">Users</h2>
-        <a href="{{route('users.create')}}" class="btn btn-primary btn-sm mb-3">+ Create</a>
-        <table class="table table-striped table-dark">
-            <thead>
-                <tr>
-                    <th class="bg-dark text-white ">#</th>
-                    <th class="bg-dark text-white">NAME</th>
-                    <th class="bg-dark text-white">GENDER</th>
-                    <th class="bg-dark text-white">EMAIL</th>
-                    <th class="bg-dark text-white">ADDRESS</th>
-                    {{-- <th class="bg-dark text-white">PASSWORD</th> --}}
-                    <th class="bg-dark text-white">IMAGE</th>
-                    <th class="bg-dark text-white">STATUS</th>
-                    <th class="bg-dark text-white">ACTION</th>
+    <div class="container-xxl ">
+        <div class="table-responsive">
+            <h2 class="my-5 text-center">Users</h2>
+            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm mb-3">+ Create</a>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th class="bg-dark text-white ">#</th>
+                        <th class="bg-dark text-white">NAME</th>
+                        <th class="bg-dark text-white">GENDER</th>
+                        <th class="bg-dark text-white">EMAIL</th>
+                        <th class="bg-dark text-white">ADDRESS</th>
+                        {{-- <th class="bg-dark text-white">PASSWORD</th> --}}
+                        <th class="bg-dark text-white">IMAGE</th>
+                        <th class="bg-dark text-white">STATUS</th>
+                        <th class="bg-dark text-white">ACTION</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($UserModel as $UserLists)
-                    <tr class="">
-                        <td>{{ $UserLists['id'] }}</td>
-                        <td>{{ $UserLists['name'] }}</td>
-                        <td>{{ $UserLists['gender'] }}</td>
-                        <td>{{ $UserLists['email'] }}</td>
-                        <td>{{ $UserLists['address'] }}</td>
-                        {{-- <td>{{ $UserLists['password'] }}</td> --}}
-                        <td>{{ $UserLists['image'] }}</td>
-                        <td>{{ $UserLists['status'] }}</td>
-                        <td class="d-flex">
-                            <a href="" class="btn btn-success btn-sm me-2"><i
-                                    class="fa-solid fa-pen-to-square"></i>Edit</a>
-                            <form action="{{ route('users.delete', ['id' => $UserLists['id']]) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fa-solid fa-trash-can"></i></button>
-                            </form>
-                        </td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($UserModel as $UserLists)
+                        <tr class="">
+                            <td>{{ $UserLists['id'] }}</td>
+                            <td>{{ $UserLists['name'] }}</td>
+                            <td>{{ $UserLists['gender'] }}</td>
+                            <td>{{ $UserLists['email'] }}</td>
+                            <td>{{ $UserLists['address'] }}</td>
+                            {{-- <td>{{ $UserLists['password'] }}</td> --}}
+                            <td>
+                                {{-- {{ $UserLists['image'] }} --}}
+                                <img src="{{ asset('UserImages/' . $UserLists['image']) }}"
+                                    alt="{{ $UserLists['image'] }}" >
+                            </td>
+                            <td>{{ $UserLists['status'] }}</td>
+                            <td class="d-flex">
+                                <a href="{{route('users.edit', ['id'=>$UserLists['id']])}}" class="btn btn-success btn-sm me-2"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                                <form action="{{ route('users.delete', ['id' => $UserLists['id']]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                            class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </body>

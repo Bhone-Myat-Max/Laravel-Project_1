@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body shadow-2xl">
                     <label for="">Name</label><br>
-                    <input type="text" name="name" class="form-control @error('password') is-invalid @enderror"><br>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"><br>
                     @error('name')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
@@ -36,7 +36,7 @@
                     @enderror
 
                     <label for="">Gender</label><br>
-                    <input type="text" name="gender" class="form-control @error('password') is-invalid @enderror"><br>
+                    <input type="text" name="gender" class="form-control @error('gender') is-invalid @enderror"><br>
                     @error('gender')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
@@ -44,7 +44,7 @@
                     @enderror
 
                     <label for="">Email</label><br>
-                    <input type="text" name="email" class="form-control @error('password') is-invalid @enderror"><br>
+                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"><br>
                     @error('email')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
@@ -52,7 +52,7 @@
                     @enderror
 
                     <label for="">Address</label><br>
-                    <input type="text" name="address" class="form-control @error('password') is-invalid @enderror"><br>
+                    <input type="text" name="address" class="form-control @error('address') is-invalid @enderror"><br>
                     @error('address')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
@@ -70,7 +70,7 @@
                     @enderror
 
                     <label for="">Image</label><br>
-                    <input type="file" name="image" class="form-control @error('password') is-invalid @enderror"><br>
+                    <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"><br>
                     @error('image')
                         <div class="invalid-feedback d-block">
                             {{ $message }}

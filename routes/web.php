@@ -111,8 +111,12 @@ Route::post('Product/{id}/delete' ,[ProductController::class, 'delete'])->name('
 
 
 
+
 //User
 Route::get('/User', [UserController::class, 'list'])->name('users.list');
 Route::post('/User/{id}/delete', [UserController::class, 'delete'])->name('users.delete');
 Route::get('/User/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/User/store', [UserController::class, 'store'])->name('users.store');
+Route::get('/User/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::post('User/{id}/update', [UserController::class, 'update'])->name('users.update');
+
