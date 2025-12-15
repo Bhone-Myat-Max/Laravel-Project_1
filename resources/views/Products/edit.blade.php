@@ -20,7 +20,6 @@
                 Edit Products
             </div>
             <div class="card-body">
-                {{-- form --}}
                 <form action="{{ route('products.update', [$product->id]) }}" method="POST">
                     @csrf
                     <label for="" class="mb-2">Products</label><br>
@@ -68,7 +67,7 @@
 
                     <label for="status">Active Or Expired</label>br
                     <input type="checkbox" name="status" role="switch" value="{{$product->status}}" {{ $product->status == 1 ? 'checked' :"" }} >
-                        {{-- button --}}
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary btn-sm me-2">Update</button>
                         <a href="{{ route('product.index') }}" class="btn btn-outline-secondary btn-sm">Back</a>

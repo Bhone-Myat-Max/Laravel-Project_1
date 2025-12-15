@@ -17,21 +17,22 @@ class CategoryController extends Controller
         $this-> CategoryRepository = $CategoryRepository;
     }
 
-    # List funtion
     public function index(){
         $data = $this->CategoryRepository->index();
         return view('Categories.index' ,compact('data'));
     }
 
 
-    # edit funtion
+
+
+    // dd
+
     public function edit($id){
         $category = Category::find($id);
         return view('Categories.edit', compact('category'));
     }
 
 
-    # update funtion
     public function update(CategoryUpdateRrequest $request){
         // dd($request->all);
          $category = Category::find($request->id);
@@ -41,13 +42,12 @@ class CategoryController extends Controller
          return redirect()->route('categories.index');
     }
 
-    # create funtion
     public function create(){
+        // dd(here);
         return view('Categories.create');
     }
 
 
-    # store funtion
     public function store(Request $request){
         $validedData= $request->validate([
             'name'=> 'required|string',
@@ -61,11 +61,11 @@ class CategoryController extends Controller
 
         $this->CategoryRepository->store($validedData);
         return redirect()->route('categories.index');
-
+        // dd($request->all);
     }
 
-    # delete funtion
     public function delete($id){
+        // dd($id);
         $category = $this->CategoryRepository->delete($id);
         $category->delete();
 

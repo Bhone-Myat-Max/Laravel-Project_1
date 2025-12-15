@@ -120,3 +120,7 @@ Route::post('/User/store', [UserController::class, 'store'])->name('users.store'
 Route::get('/User/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('User/{id}/update', [UserController::class, 'update'])->name('users.update');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

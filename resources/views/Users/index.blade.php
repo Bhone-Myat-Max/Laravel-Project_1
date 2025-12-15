@@ -38,7 +38,6 @@
         <div class="table-responsive">
             <h2 class="my-5 text-center">Users</h2>
             <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm mb-3">+ Create</a>
-            {{-- Table --}}
             <table class="table table-dark">
                 <thead>
                     <tr>
@@ -62,22 +61,16 @@
                             <td>{{ $UserLists['gender'] }}</td>
                             <td>{{ $UserLists['email'] }}</td>
                             <td>{{ $UserLists['address'] }}</td>
+                            {{-- <td>{{ $UserLists['password'] }}</td> --}}
                             <td>
-                                @if ($UserLists->status == 1)
-                                    <span class="text-success">Active</span>
-                                @else
-                                    <span class="text-danger">Inactive</span>
-                                @endif
-                            </td>
-
-                            <td>
+                                {{-- {{ $UserLists['image'] }} --}}
                                 <img src="{{ asset('UserImages/' . $UserLists['image']) }}"
-                                    alt="{{ $UserLists['image'] }}">
+                                    alt="{{ $UserLists['image'] }}" >
                             </td>
-
+                            <td>{{ $UserLists['status'] }}</td>
                             <td class="d-flex">
-                                <a href="{{ route('users.edit', ['id' => $UserLists['id']]) }}"
-                                    class="btn btn-success btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{route('users.edit', ['id'=>$UserLists['id']])}}" class="btn btn-success btn-sm me-2"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('users.delete', ['id' => $UserLists['id']]) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm"><i

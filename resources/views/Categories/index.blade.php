@@ -14,9 +14,23 @@
 
 <body>
     <div class="container">
+
+        {{-- <H1>Hello Category</H1>
+        <a href="{{route('categories.create')}}">Create</a>
+
+        @foreach ($data as $category)
+        <p>{{$category['id']}}:{{$category['name']}}</p>
+
+        <a href="{{route('categories.edit', ['id'=>$category->id])}}">Edit</a>
+        <form action="{{route('categories.delete', ['id'=>$category['id']])}}" method="POST">
+            @csrf
+            <button class="submit">Delete</button>
+
+        </form>
+
+        @endforeach --}}
         <h2 class="mt-4">Hello category</h2>
         <a href="{{ route('categories.create') }}" class="btn btn-outline-success btn-sm mb-4">+ Create</a>
-        {{-- Table --}}
         <table class="table table-bordered">
             <thead>
                 <tr>

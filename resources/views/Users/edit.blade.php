@@ -21,7 +21,6 @@
 <body>
     <div class="container">
         <div class="card">
-            {{-- form --}}
             <form action="{{route('users.update', [$UserModel->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- @method('PUT') --}}
@@ -83,7 +82,6 @@
 
 
                 </div>
-                {{-- button --}}
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm me-3">Submit</button>
                     <a href="{{ route('users.list') }}" class="btn btn-outline-secondary btn-sm">Back</a>
