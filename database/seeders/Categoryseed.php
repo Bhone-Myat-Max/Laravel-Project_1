@@ -15,19 +15,16 @@ class Categoryseed extends Seeder
     {
         $categories =[
             [
-                'id'=> 1,
                 'name' => "Travel",
+
             ],
             [
-                'id'=> 2,
                 'name' => "Education",
             ],
             [
-                'id'=> 3,
                 'name' => "Drink & Fruit",
             ],
             [
-                'id'=> 4,
                 'name' => "Health & care",
             ]
         ];
